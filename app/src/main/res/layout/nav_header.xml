@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@drawable/nav_head_img"
+    android:padding="10dp"
+    android:fitsSystemWindows="true"
+    >
+
+<de.hdodenhof.circleimageview.CircleImageView
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    android:src="@drawable/nav_cat"
+    android:id="@+id/circleImageView"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="20dp"
+ />
+
+    <TextView
+        android:id="@+id/textView_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mail"
+        android:textColor="#ffffff"
+        android:layout_toRightOf="@id/circleImageView"
+        android:layout_alignBottom="@id/circleImageView"
+        android:layout_marginLeft="10dp"
+         />
+
+
+    <TextView
+        android:id="@+id/textView_nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="By:梦龙Dragon"
+        android:textColor="#ffffff"
+        android:layout_above="@id/textView_email"
+        android:layout_alignRight="@id/textView_email"
+        />
+
+
+</RelativeLayout>

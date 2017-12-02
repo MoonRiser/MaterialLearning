@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorLight">#dad8d8</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="red500">#F44336</color>
+    <color name="blue500">#2196F3</color>
+    <color name="orange500">#FF9800</color>
+    <color name="teal500">#009688</color>
+    <color name="cyan500">#00BCD4</color>
+
+</resources>

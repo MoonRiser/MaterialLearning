@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:checkableBehavior="single">
+<item
+    android:id="@+id/call"
+    android:title="Dial"
+    android:icon="@drawable/ic_dialpad_black_24dp" />
+    <item
+        android:id="@+id/callCM"
+        android:title="Call"
+        android:icon="@drawable/ic_call_black_24dp"
+        />
+    <item
+        android:id="@+id/group"
+        android:title="WeTalk"
+        android:icon="@drawable/ic_group_black_24dp"/>
+    <item
+        android:id="@+id/location"
+        android:title="Location"
+        android:icon="@drawable/ic_location_on_black_24dp"/>
+    <item
+        android:id="@+id/mail"
+        android:title="Mail"
+        android:icon="@drawable/ic_mail_black_24dp"/>
+    <item
+        android:id="@+id/task"
+        android:title="Task"
+        android:icon="@drawable/ic_event_note_black_24dp"/>
+
+</group>
+
+
+</menu>

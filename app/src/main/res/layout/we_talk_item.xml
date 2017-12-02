@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+
+    <RelativeLayout
+        android:id="@+id/leftLayout"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left">
+
+        <ImageView
+            android:id="@+id/girlImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:id="@+id/leftMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/msg_lefthdpi"
+            android:layout_toRightOf="@id/girlImage" />
+    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rightLayout"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right">
+
+            <ImageView
+                android:id="@+id/boyImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"/>
+
+
+            <TextView
+                android:id="@+id/rightMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/msg_righthdpi"
+                android:layout_toLeftOf="@id/boyImage"/>
+
+        </RelativeLayout>
+
+
+
+</LinearLayout>

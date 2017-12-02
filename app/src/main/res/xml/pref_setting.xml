@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="pref_cy"
+        android:title="用户">
+        <Preference
+            android:key="pref_user_info" />
+        <EditTextPreference
+            android:key="pref_user_name"
+            android:title="修改昵称" />
+        <Preference
+            android:key="pref_user_logout"
+            android:title="退出登陆"
+            android:summary="退出但不清除账号密码信息"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_routine"
+        android:title="常规">
+        <SwitchPreference
+            android:key="pref_theme_dark"
+            android:title="夜间模式"
+            android:summary="切换夜间模式(暂未实现)" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
