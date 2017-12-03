@@ -19,13 +19,13 @@
 
     <!-- 以下是百度地图用到的权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!--uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /-->
+    <!-- uses-permission android:name="android.permission.CHANGE_WIFI_STATE" / -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <application
-        android:name="com.example.xiewencai.material_learning.MyApplication"
+        android:name=".util.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/newxxxhdpi"
         android:label="@string/app_name"
@@ -38,16 +38,16 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="Aesthetics" />
         <activity
-            android:name=".HorosActivity"
+            android:name=".activity.HorosActivity"
             android:theme="@style/HorosActivityTheme" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,15 +55,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeTalkActivity" />
+        <activity android:name=".activity.WeTalkActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/HorosActivityTheme" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".activity.SettingActivity"
             android:label="设置" />
-        <activity android:name=".BaiduMapActivity" />
+        <activity android:name=".activity.BaiduMapActivity" />
+
+        <service
+            android:name=".service.DownloadService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.DownloadTaskActivity"
+            android:theme="@style/HideStatueBarTheme"/>
     </application>
 
 </manifest>

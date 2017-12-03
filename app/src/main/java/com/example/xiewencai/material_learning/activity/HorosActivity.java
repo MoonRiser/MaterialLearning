@@ -1,18 +1,16 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.xiewencai.material_learning.R;
 
 public class HorosActivity extends BaseActivity {
 
@@ -26,7 +24,7 @@ public class HorosActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //将12个星座故事传入bundle键值对，方便取用
-        bundle.putInt("双鱼座",R.string.Pisces);bundle.putInt("巨蟹座",R.string.Cancro);bundle.putInt("天蝎座",R.string.Scorpio);bundle.putInt("水瓶座",R.string.Aquarius);
+        bundle.putInt("双鱼座", R.string.Pisces);bundle.putInt("巨蟹座",R.string.Cancro);bundle.putInt("天蝎座",R.string.Scorpio);bundle.putInt("水瓶座",R.string.Aquarius);
         bundle.putInt("双子座",R.string.Gemini);bundle.putInt("天秤座",R.string.Libra);bundle.putInt("白羊座",R.string.Aries);bundle.putInt("狮子座",R.string.Leo);
         bundle.putInt("射手座",R.string.Sagit);bundle.putInt("金牛座",R.string.Taurus);bundle.putInt("处女座",R.string.Virgo);bundle.putInt("摩羯座",R.string.Capricorn);
 

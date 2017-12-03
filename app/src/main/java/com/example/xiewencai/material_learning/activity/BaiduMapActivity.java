@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -21,6 +21,8 @@ import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.example.xiewencai.material_learning.R;
+import com.example.xiewencai.material_learning.util.ActivityCollector;
 
 public class BaiduMapActivity extends BaseActivity {
 
@@ -57,7 +59,7 @@ public class BaiduMapActivity extends BaseActivity {
                 }
 
 
-                showToast(BaiduMapActivity.this,"这是第"+flag+"次运行");
+                showToast("这是第"+flag+"次运行");
                 positionText.setText(currentPosition);
 
             }
@@ -95,13 +97,13 @@ public class BaiduMapActivity extends BaseActivity {
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("说明");
         dialog.setCancelable(false);
-        dialog.setMessage("定位需要获取 位置权限，不会用于其他用途，请放心");
+        dialog.setMessage("定位需要获取 位置/读写存储权限，不会用于其他用途，请放心");
         dialog.setPositiveButton("知道了", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 ActivityCompat.requestPermissions(BaiduMapActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);//申请权限
-           showToast(BaiduMapActivity.this,"申请成功执行");
+           showToast("申请成功执行");
             }
         });
         dialog.show();
@@ -114,7 +116,7 @@ public class BaiduMapActivity extends BaseActivity {
             case 2:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED&&grantResults[1]==PackageManager.PERMISSION_GRANTED){
                     requestLocation();
-                    showToast(this,"权限授权成功");
+                    showToast("权限授权成功");
                 }
                 else{
                     Toast.makeText(BaiduMapActivity.this, "you denied the permission“程序即将奔溃” ", Toast.LENGTH_LONG).show();
@@ -130,7 +132,7 @@ public class BaiduMapActivity extends BaseActivity {
     public void navigateTo(BDLocation location){
         if(isFirstLocate){
             LatLng latLng=new LatLng(location.getLatitude(),location.getLongitude());
-            showToast(this,"定位到当前位置已执行");
+            showToast("定位到当前位置已执行");
 
             MapStatusUpdate    update=MapStatusUpdateFactory.zoomTo(8f);
             baiduMap.animateMapStatus(update);
@@ -151,7 +153,7 @@ public class BaiduMapActivity extends BaseActivity {
         super.onDestroy();
         baiduMap.setMyLocationEnabled(false);
         locationClient.stop();
-        showToast(this,"定位已关闭");
+        showToast("定位已关闭");
     }
 
     protected  void onResume(){

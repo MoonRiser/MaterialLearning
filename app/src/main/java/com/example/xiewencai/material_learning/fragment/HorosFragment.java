@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.fragment;
 
 
 import android.os.Bundle;
@@ -11,8 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.xiewencai.material_learning.Horoscope;
+import com.example.xiewencai.material_learning.R;
+import com.example.xiewencai.material_learning.adapter.HoroAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +32,7 @@ public class HorosFragment extends Fragment {
     private    SwipeRefreshLayout swipeRefreshLayout;
     private View view;
     HoroAdapter adapter=new HoroAdapter(horoList);
-    private Horoscope[] horos={new Horoscope("Pisces","双鱼座",R.drawable.pisces),
+    private Horoscope[] horos={new Horoscope("Pisces","双鱼座", R.drawable.pisces),
             new Horoscope("Cancro","巨蟹座",R.drawable.cancro),new Horoscope("Scorpio","天蝎座",R.drawable.scropio),
             new Horoscope("Aquarius","水瓶座",R.drawable.aquarius),new Horoscope("Gemini","双子座",R.drawable.gemini),
             new Horoscope("Libra","天秤座",R.drawable.libra),new Horoscope("Aries","白羊座",R.drawable.aries),

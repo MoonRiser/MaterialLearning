@@ -5,6 +5,6 @@
     <version value="1" ></version>
 
     <list>
-        <mapping  class="com.example.xiewencai.material_learning.Book"></mapping>
+        <mapping  class="com.example.xiewencai.material_learning.db.Book"></mapping>
     </list>
 </litepal>

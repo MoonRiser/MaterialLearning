@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 
 import android.Manifest;
@@ -20,7 +20,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import cn.bmob.v3.Bmob;
+import com.example.xiewencai.material_learning.R;
+
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;

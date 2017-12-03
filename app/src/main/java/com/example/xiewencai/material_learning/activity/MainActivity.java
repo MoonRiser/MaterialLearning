@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 import android.Manifest;
 import android.animation.ArgbEvaluator;
@@ -34,6 +34,12 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.xiewencai.material_learning.fragment.HorosFragment;
+import com.example.xiewencai.material_learning.R;
+import com.example.xiewencai.material_learning.adapter.TabFragmentAdapter;
+import com.example.xiewencai.material_learning.db.Book;
+import com.example.xiewencai.material_learning.util.ActivityCollector;
+
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
@@ -53,8 +59,8 @@ public class MainActivity extends BaseActivity {
 
         statusView= initStatusBar();
 
-        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);//导航抽屉
+        NavigationView navView = findViewById(R.id.nav_view);
+        mDrawerLayout = findViewById(R.id.drawer_layout);//导航抽屉
 
         //初始化tab和ViewPager
         initTabViewPager();
@@ -97,6 +103,13 @@ public class MainActivity extends BaseActivity {
                     case R.id.location:
                        Intent intent5=new Intent(MainActivity.this,BaiduMapActivity.class);
                        startActivity(intent5);
+                       break;
+
+                    case R.id.task:
+                        Intent intent2=new Intent(MainActivity.this,DownloadTaskActivity.class);
+                        startActivity(intent2);
+                        break;
+
                     default:
                         break;
                 }
@@ -134,7 +147,7 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(this, "well, you clicked Backup", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.about:
-                showToast(this, "Software Copyright Reserved ");
+                showToast("Software Copyright Reserved ");
 
                 break;
             case android.R.id.home:

@@ -1,10 +1,10 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toolbar;
+
+import com.example.xiewencai.material_learning.R;
 
 public class SettingActivity extends BaseActivity {
 

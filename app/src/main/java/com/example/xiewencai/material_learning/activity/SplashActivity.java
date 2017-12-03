@@ -1,17 +1,15 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.xiewencai.material_learning.R;
 
 import java.util.Random;
 
-import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 
 public class SplashActivity extends BaseActivity {

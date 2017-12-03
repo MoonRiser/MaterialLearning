@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.fragment;
 
 
 import android.content.Context;
@@ -9,13 +9,11 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.example.xiewencai.material_learning.MainActivity.BROADCAST_FLAG;
+import com.example.xiewencai.material_learning.R;
+
+import static com.example.xiewencai.material_learning.activity.MainActivity.BROADCAST_FLAG;
 
 /**
  * A simple {@link Fragment} subclass.

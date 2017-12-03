@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.db;
 
 import org.litepal.crud.DataSupport;
 

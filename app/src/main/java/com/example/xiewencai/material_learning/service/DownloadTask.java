@@ -1,10 +1,8 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.service;
 
 
 import android.os.AsyncTask;
 import android.os.Environment;
-
-import junit.framework.TestSuite;
 
 import java.io.File;
 import java.io.IOException;
@@ -108,8 +106,10 @@ public class DownloadTask extends AsyncTask<String, Integer, Integer> {
 
     protected void onProgressUpdate(Integer...values){
         int progress=values[0];
-        downloadListener.onProgress(progress);
-        lastProgress=progress;
+        if(progress>lastProgress){
+            downloadListener.onProgress(progress);
+            lastProgress=progress;
+        }
     }
 
     protected void onPostExecute(Integer status){

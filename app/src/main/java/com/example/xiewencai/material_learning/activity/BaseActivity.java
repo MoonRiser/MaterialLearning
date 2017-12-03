@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.activity;
 
 
 import android.content.BroadcastReceiver;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+
+import com.example.xiewencai.material_learning.util.ActivityCollector;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
@@ -31,7 +33,7 @@ public class BaseActivity  extends AppCompatActivity{
     }
 
     //自定义Toast方法，
-    public void showToast(Context context,String content){
+    public void showToast(String content){
         if(toast==null){
        toast= Toast.makeText(this, content, Toast.LENGTH_SHORT);
         }else {

@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.adapter;
 
 import android.app.Activity;
 import android.app.ActivityOptions;
@@ -13,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.xiewencai.material_learning.activity.HorosActivity;
+import com.example.xiewencai.material_learning.Horoscope;
+import com.example.xiewencai.material_learning.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
