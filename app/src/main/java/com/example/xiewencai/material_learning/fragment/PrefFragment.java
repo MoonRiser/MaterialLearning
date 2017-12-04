@@ -4,14 +4,18 @@ package com.example.xiewencai.material_learning.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.widget.Toast;
 
 import com.example.xiewencai.material_learning.R;
+import com.example.xiewencai.material_learning.activity.MainActivity;
+import com.example.xiewencai.material_learning.util.ActivityCollector;
 
 import static com.example.xiewencai.material_learning.activity.MainActivity.BROADCAST_FLAG;
 
@@ -26,7 +30,7 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
     Preference logout;
     Preference themeDark;
     String nickname;
-
+   // int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
     public void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
@@ -66,7 +70,15 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
             break;
 
         case"pref_theme_dark":
-            Toast.makeText(getActivity(), "都说了功能还在开发中"+newValue, Toast.LENGTH_SHORT).show();
+            if((boolean)newValue) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else  {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            ActivityCollector.activities.get(0).recreate();//返回栈的首节点应该是主活动，让它重启
+            getActivity().recreate();
+
+            //Toast.makeText(getActivity(), "都说了功能还在开发中"+newValue, Toast.LENGTH_SHORT).show();
             break;
     }
 

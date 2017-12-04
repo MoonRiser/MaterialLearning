@@ -19,8 +19,9 @@
         android:title="常规">
         <SwitchPreference
             android:key="pref_theme_dark"
+            android:defaultValue="false"
             android:title="夜间模式"
-            android:summary="切换夜间模式(暂未实现)" />
+            android:summary="切换夜间模式" />
 
     </PreferenceCategory>
 
