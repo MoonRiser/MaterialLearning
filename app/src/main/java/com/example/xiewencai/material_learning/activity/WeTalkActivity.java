@@ -2,6 +2,7 @@ package com.example.xiewencai.material_learning.activity;
 
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -10,9 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.xiewencai.material_learning.Msg;
+import com.example.xiewencai.material_learning.bean.Msg;
 import com.example.xiewencai.material_learning.R;
-import com.example.xiewencai.material_learning.activity.BaseActivity;
 import com.example.xiewencai.material_learning.adapter.WeTalkAdapter;
 
 import java.util.ArrayList;
@@ -32,10 +32,10 @@ public class WeTalkActivity extends BaseActivity {
         setContentView(R.layout.activity_we_talk);
 
         initMsgs();
-        recyclerView=(RecyclerView) findViewById(R.id.recycler_view_weTalk);
-        Toolbar toolbar=(Toolbar) findViewById(R.id.toolbar_weTalk);
-        Button button=(Button) findViewById(R.id.send);
-          editText=(EditText) findViewById(R.id.editText);
+        recyclerView= findViewById(R.id.recycler_view_weTalk);
+        Toolbar toolbar=  findViewById(R.id.toolbar_weTalk);
+        Button button= findViewById(R.id.send);
+          editText=  findViewById(R.id.editText);
 
         setSupportActionBar(toolbar);
         ActionBar actionBar= getSupportActionBar();
@@ -46,6 +46,7 @@ public class WeTalkActivity extends BaseActivity {
         //设置recyclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter=new WeTalkAdapter(msgList);
         recyclerView.setAdapter(adapter);
 

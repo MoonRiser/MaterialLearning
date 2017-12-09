@@ -23,6 +23,11 @@
             android:title="夜间模式"
             android:summary="切换夜间模式" />
 
+        <Preference
+            android:title="App"
+            android:summary="开发者:梦龙Dragon"
+            />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

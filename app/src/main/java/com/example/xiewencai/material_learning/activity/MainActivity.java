@@ -5,6 +5,7 @@ import android.animation.ArgbEvaluator;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        statusView= initStatusBar();
+        statusView = initStatusBar();
 
         NavigationView navView = findViewById(R.id.nav_view);
         mDrawerLayout = findViewById(R.id.drawer_layout);//导航抽屉
@@ -73,13 +74,7 @@ public class MainActivity extends BaseActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.mail:
-                        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);//获取系统服务：通知管理器
-
-
-
-                              Notification notification = new NotificationCompat.Builder(MainActivity.this).setContentTitle("Do you want to sent a email?").setStyle(new NotificationCompat.BigTextStyle().bigText("hi, would you want to make a communication with the developer? Gmail accepted,you know it"))
-                                .setWhen(System.currentTimeMillis()).setAutoCancel(true).setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.mipmap.ic_launcher).setLargeIcon(BitmapFactory.decodeResource(getResources(), R.id.mail)).build();
-                        notificationManager.notify(01, notification);
+                        sentMessage();
                         break;
 
                     case R.id.group:
@@ -101,12 +96,12 @@ public class MainActivity extends BaseActivity {
                         }
                         break;
                     case R.id.location:
-                       Intent intent5=new Intent(MainActivity.this,BaiduMapActivity.class);
-                       startActivity(intent5);
-                       break;
+                        Intent intent5 = new Intent(MainActivity.this, BaiduMapActivity.class);
+                        startActivity(intent5);
+                        break;
 
                     case R.id.task:
-                        Intent intent2=new Intent(MainActivity.this,DownloadTaskActivity.class);
+                        Intent intent2 = new Intent(MainActivity.this, DownloadTaskActivity.class);
                         startActivity(intent2);
                         break;
 
@@ -174,7 +169,7 @@ public class MainActivity extends BaseActivity {
     //拨打电话的方法
     private void call() {
         try {
-            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("拨打电话").setCancelable(false);
             builder.setMessage("将要给1008611打电话查询话费，是否继续？");
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -263,8 +258,8 @@ public class MainActivity extends BaseActivity {
         tabList.add("Tab1");
         tabList.add("Tab2");
         tabList.add("Tab3");
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        final TabLayout tabLayout = findViewById(R.id.tabs);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -273,12 +268,14 @@ public class MainActivity extends BaseActivity {
                 int evaluate = (Integer) evaluator.evaluate(positionOffset, materalColor[position], materalColor[(position + 1) % tabList.size()]);
                 tabLayout.setBackgroundColor(evaluate);
                 toolbar.setBackgroundColor(evaluate);
-               statusView.setBackgroundColor(evaluate);
+                statusView.setBackgroundColor(evaluate);
                 getWindow().setNavigationBarColor(evaluate);
             }
+
             @Override
             public void onPageSelected(int position) {
             }
+
             @Override
             public void onPageScrollStateChanged(int state) {
             }
@@ -298,19 +295,19 @@ public class MainActivity extends BaseActivity {
     }
 
     //初始化状态栏
-    public View  initStatusBar( ) {
-        FrameLayout frameLayout=(FrameLayout)findViewById(R.id.frame_layout);
-            Window window = getWindow();
-            ViewGroup decorView = (ViewGroup) window.getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+    public View initStatusBar() {
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+        Window window = getWindow();
+        ViewGroup decorView = (ViewGroup) window.getDecorView();
+        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
 
-            int finalColor = Color.argb(50, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT);
-            window.setStatusBarColor(finalColor);
-        View   statusView = createStatusBarView(this,ContextCompat.getColor(this, R.color.colorPrimary));
+        int finalColor = Color.argb(50, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT);
+        window.setStatusBarColor(finalColor);
+        View statusView = createStatusBarView(this, ContextCompat.getColor(this, R.color.colorPrimary));
         frameLayout.addView(statusView);
-            decorView.setSystemUiVisibility(option);
-        return  statusView;
+        decorView.setSystemUiVisibility(option);
+        return statusView;
     }
 
     private static View createStatusBarView(Activity activity, int color) {
@@ -318,7 +315,7 @@ public class MainActivity extends BaseActivity {
         View statusBarView = new View(activity);
         FrameLayout.LayoutParams params =
                 new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
-        params.gravity= Gravity.TOP;
+        params.gravity = Gravity.TOP;
         statusBarView.setLayoutParams(params);
         statusBarView.setBackgroundColor(color);
         return statusBarView;
@@ -329,6 +326,17 @@ public class MainActivity extends BaseActivity {
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
+
+    private void sentMessage() {
+        Intent intent = new Intent(this, SettingActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);//获取系统服务：通知管理器
+        Notification notification = new NotificationCompat.Builder(MainActivity.this).setContentTitle("Do you want to sent a email?").setStyle(new NotificationCompat.BigTextStyle().bigText("hi, would you want to make a communication with the developer? Gmail accepted,you know it"))
+                .setWhen(System.currentTimeMillis()).setAutoCancel(true).setContentIntent(pi).setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.mipmap.ic_launcher).setLargeIcon(BitmapFactory.decodeResource(getResources(), R.id.mail)).build();
+        notificationManager.notify(01, notification);
+    }
+
 
 }
 

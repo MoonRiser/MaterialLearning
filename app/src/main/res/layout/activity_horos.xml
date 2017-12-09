@@ -60,7 +60,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:clickable="true"
-            app:cardElevation="4dp"
+            app:cardElevation="2dp"
             android:foreground="?attr/selectableItemBackgroundBorderless"
             app:cardCornerRadius="4dp">
 

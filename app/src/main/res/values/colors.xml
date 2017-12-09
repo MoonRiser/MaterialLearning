@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="textColorPrimary">#d8d8d8</color>
-    <color name="viewBackground">@android:color/white</color>
+    <color name="viewBackground">#eeeeee</color>
 
     <color name="colorLight">#dad8d8</color>
     <color name="black_overlay">#66000000</color>

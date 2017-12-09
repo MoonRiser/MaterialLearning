@@ -19,6 +19,7 @@ import java.io.File;
 
 public class DownloadService extends Service {
 
+    private boolean isFirstTime=true;
     private DownloadTask downloadTask;
     private String downloadUrl;
 
@@ -118,6 +119,10 @@ public class DownloadService extends Service {
         builder.setSmallIcon(R.mipmap.ic_launcher);
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
         builder.setContentIntent(pendingIntent);
+        if(isFirstTime){
+            builder.setDefaults(NotificationCompat.DEFAULT_VIBRATE|NotificationCompat.DEFAULT_SOUND);
+            isFirstTime=false;
+        }
         builder.setContentTitle(title);
         if (progress > 0) {
             builder.setContentText(progress + "%");

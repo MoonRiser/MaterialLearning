@@ -1,4 +1,4 @@
-package com.example.xiewencai.material_learning;
+package com.example.xiewencai.material_learning.bean;
 
 /**
  * Created by Xie Wencai on 2017/8/22.

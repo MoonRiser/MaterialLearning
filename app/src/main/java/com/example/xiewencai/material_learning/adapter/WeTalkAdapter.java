@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.xiewencai.material_learning.Msg;
+import com.example.xiewencai.material_learning.bean.Msg;
 import com.example.xiewencai.material_learning.R;
 
 import java.util.List;
@@ -58,6 +58,7 @@ public class WeTalkAdapter extends RecyclerView.Adapter<WeTalkAdapter.ViewHolder
     }
 
     public  void onBindViewHolder(ViewHolder viewHolder,int position){
+
 
         Msg msg= msgList.get(position);
         if(msg.getType()==Msg.TYPE_RECEIVED){
