@@ -62,7 +62,8 @@
             android:clickable="true"
             app:cardElevation="2dp"
             android:foreground="?attr/selectableItemBackgroundBorderless"
-            app:cardCornerRadius="4dp">
+            app:cardCornerRadius="4dp"
+            android:focusable="true">
 
             <TextView
                 android:id="@+id/horo_story"

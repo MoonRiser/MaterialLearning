@@ -65,8 +65,8 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
     public boolean onPreferenceChange(Preference preference, Object newValue) {
     switch (preference.getKey()){
         case "pref_user_name":
-            userInFo.setTitle("尊敬的"+nickname);
-            userInFo.setSummary("用户，你好");
+            userInFo.setTitle("尊敬的"+"“"+nickname+"”");
+            userInFo.setSummary("欢迎使用本应用");
             break;
 
         case"pref_theme_dark":

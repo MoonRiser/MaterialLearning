@@ -5,6 +5,9 @@
     <version value="1" ></version>
 
     <list>
-        <mapping  class="com.example.xiewencai.material_learning.db.Book"></mapping>
+        <mapping class="com.example.xiewencai.material_learning.db.County" />
+        <mapping class="com.example.xiewencai.material_learning.db.City" />
+        <mapping class="com.example.xiewencai.material_learning.db.Province" />
+
     </list>
 </litepal>

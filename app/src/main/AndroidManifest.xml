@@ -42,8 +42,8 @@
 
         <activity
             android:name=".activity.MainActivity"
-            android:launchMode="singleTask"
-            android:label="Aesthetics" />
+            android:label="Aesthetics"
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.HorosActivity"
             android:theme="@style/HorosActivityTheme" />
@@ -71,8 +71,10 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.DownloadTaskActivity"
-            android:theme="@style/HideStatueBarTheme"/>
+        <activity
+            android:name=".activity.DownloadTaskActivity"
+            android:theme="@style/HideStatueBarTheme" />
+        <activity android:name=".activity.WeatherActivity"></activity>
     </application>
 
 </manifest>

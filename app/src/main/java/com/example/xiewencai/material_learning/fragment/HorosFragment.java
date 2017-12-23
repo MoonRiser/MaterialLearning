@@ -13,11 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.xiewencai.material_learning.adapter.AlbumAdapter;
-import com.example.xiewencai.material_learning.bean.Album;
-import com.example.xiewencai.material_learning.bean.Horoscope;
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.adapter.HoroAdapter;
+import com.example.xiewencai.material_learning.bean.Album;
+import com.example.xiewencai.material_learning.bean.Horoscope;
 
 import java.util.ArrayList;
 import java.util.List;

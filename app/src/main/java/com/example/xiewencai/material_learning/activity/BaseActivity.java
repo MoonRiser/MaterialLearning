@@ -21,65 +21,73 @@ import cn.bmob.v3.BmobUser;
  * Created by Xie Wencai on 2017/10/7.
  */
 
-public class BaseActivity  extends AppCompatActivity{
+public class BaseActivity extends AppCompatActivity {
 
     private ForceOfflineReceiver receiver;
     private Toast toast;
 
-    protected  void onCreate(Bundle saveInstanceState){
+    protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        Bmob.initialize(this,"d214b4eddf59772a1d00b7383c093d64");//初始化bmob
+        Bmob.initialize(this, "d214b4eddf59772a1d00b7383c093d64");//初始化bmob
         ActivityCollector.addActivity(this);
     }
 
     //自定义Toast方法，
-    public void showToast(String content){
-        if(toast==null){
-       toast= Toast.makeText(this, content, Toast.LENGTH_SHORT);
-        }else {
+    public void showToast(String content) {
+        if (toast == null) {
+            toast = Toast.makeText(this, content, Toast.LENGTH_SHORT);
+        } else {
             toast.setText(content);
         }
         toast.show();
     }
 
-    //在活动生命周期的onResume()可见时动态注册广播，到onPause()不可见时取消广播注册
 
-    protected void  onResume(){
-        super.onResume();;
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(MainActivity.BROADCAST_FLAG);
-        receiver=new ForceOfflineReceiver();
-        registerReceiver(receiver,intentFilter);
+    //计算状态栏高度
+    protected static int getStatusBarHeight(Context context) {
+        // 获得状态栏高度
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return context.getResources().getDimensionPixelSize(resourceId);
     }
 
-    protected void onPause(){
-        super.onPause();
-        if(receiver!= null) {
-            unregisterReceiver(receiver);
-            receiver=null;
-            }
-        }
 
-    protected  void onDestroy(){
+    //在活动生命周期的onResume()可见时动态注册广播，到onPause()不可见时取消广播注册
+
+    protected void onResume() {
+        super.onResume();
+        ;
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(MainActivity.BROADCAST_FLAG);
+        receiver = new ForceOfflineReceiver();
+        registerReceiver(receiver, intentFilter);
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver = null;
+        }
+    }
+
+    protected void onDestroy() {
         super.onDestroy();
         ActivityCollector.removeActivity(this);
 
     }
 
 
-
-
-    class  ForceOfflineReceiver extends BroadcastReceiver{
-        public void onReceive(final Context context, Intent intent){
-            AlertDialog.Builder builder=new AlertDialog.Builder(context);
+    class ForceOfflineReceiver extends BroadcastReceiver {
+        public void onReceive(final Context context, Intent intent) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("FBI WARNING(翻车现场)");
             builder.setMessage("You are force to be offline, please login again(你不是真正的老司机，请重考驾照)");
             builder.setCancelable(false);
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialogInterface,int which){
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogInterface, int which) {
                     ActivityCollector.finishAll();
                     BmobUser.logOut();
-                    Intent intent=new Intent(context,LoginActivity.class);
+                    Intent intent = new Intent(context, LoginActivity.class);
                     startActivity(intent);
                 }
             });

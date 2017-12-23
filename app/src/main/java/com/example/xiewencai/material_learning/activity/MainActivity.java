@@ -35,13 +35,11 @@ import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.xiewencai.material_learning.fragment.HorosFragment;
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.adapter.TabFragmentAdapter;
-import com.example.xiewencai.material_learning.db.Book;
+import com.example.xiewencai.material_learning.fragment.ChooseAreaFragment;
+import com.example.xiewencai.material_learning.fragment.HorosFragment;
 import com.example.xiewencai.material_learning.util.ActivityCollector;
-
-import org.litepal.LitePal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +113,7 @@ public class MainActivity extends BaseActivity {
         });
 
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);//设置toolbar
         //设置toolbar上的汉堡菜单
         ActionBar actionBar = getSupportActionBar();
@@ -154,13 +152,6 @@ public class MainActivity extends BaseActivity {
                 break;
 
             default:
-                LitePal.getDatabase();
-                Book book = new Book();
-                book.setAuthor("Stephing Hawking");
-                book.setName("History of time");
-                book.setPages(500);
-                book.setPrice(39);
-                book.save();
                 break;
         }
         return true;
@@ -255,9 +246,8 @@ public class MainActivity extends BaseActivity {
     private void initTabViewPager() {
         final List<String> tabList = new ArrayList<>();
         final int[] materalColor = getResources().getIntArray(R.array.material_color);
-        tabList.add("Tab1");
-        tabList.add("Tab2");
-        tabList.add("Tab3");
+        tabList.add("星座故事");
+        tabList.add("天气");
         final TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -284,10 +274,12 @@ public class MainActivity extends BaseActivity {
         //设置tab模式，MODE_FIXED是固定的，MODE_SCROLLABLE可超出屏幕范围滚动的
         //  tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         List<Fragment> fragmentList = new ArrayList<>();
-        for (int i = 0; i < tabList.size(); i++) {
+
             Fragment f1 = new HorosFragment();
+            Fragment f2 = new ChooseAreaFragment();
             fragmentList.add(f1);
-        }
+            fragmentList.add(f2);
+
         TabFragmentAdapter fragmentAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragmentList, tabList);
         viewPager.setAdapter(fragmentAdapter);//给ViewPager设置适配器
         tabLayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来。
@@ -296,7 +288,7 @@ public class MainActivity extends BaseActivity {
 
     //初始化状态栏
     public View initStatusBar() {
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+        FrameLayout frameLayout = findViewById(R.id.frame_layout);
         Window window = getWindow();
         ViewGroup decorView = (ViewGroup) window.getDecorView();
         int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -321,11 +313,7 @@ public class MainActivity extends BaseActivity {
         return statusBarView;
     }
 
-    private static int getStatusBarHeight(Context context) {
-        // 获得状态栏高度
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
-    }
+
 
     private void sentMessage() {
         Intent intent = new Intent(this, SettingActivity.class);
@@ -333,7 +321,8 @@ public class MainActivity extends BaseActivity {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);//获取系统服务：通知管理器
         Notification notification = new NotificationCompat.Builder(MainActivity.this).setContentTitle("Do you want to sent a email?").setStyle(new NotificationCompat.BigTextStyle().bigText("hi, would you want to make a communication with the developer? Gmail accepted,you know it"))
-                .setWhen(System.currentTimeMillis()).setAutoCancel(true).setContentIntent(pi).setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.mipmap.ic_launcher).setLargeIcon(BitmapFactory.decodeResource(getResources(), R.id.mail)).build();
+                .setWhen(System.currentTimeMillis()).setAutoCancel(true).setContentIntent(pi).setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.mipmap.ic_launcher).
+                        setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).build();
         notificationManager.notify(01, notification);
     }
 

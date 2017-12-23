@@ -5,15 +5,19 @@
         android:key="pref_cy"
         android:title="用户">
         <Preference
+            android:icon="@drawable/ic_assignment_ind_black_24dp"
             android:key="pref_user_info" />
         <EditTextPreference
             android:key="pref_user_name"
-            android:title="修改昵称" />
+            android:title="修改昵称"
+            android:icon="@drawable/ic_edit_black_24dp"/>
         <Preference
             android:key="pref_user_logout"
             android:title="退出登陆"
-            android:summary="退出但不清除账号密码信息"/>
+            android:summary="退出但不清除账号密码信息"
+            android:icon="@drawable/ic_error_outline_black_24dp"/>
     </PreferenceCategory>
+
     <PreferenceCategory
         android:key="pref_routine"
         android:title="常规">
@@ -21,11 +25,13 @@
             android:key="pref_theme_dark"
             android:defaultValue="false"
             android:title="夜间模式"
-            android:summary="切换夜间模式" />
+            android:summary="切换夜间模式"
+            android:icon="@drawable/ic_brightness_4_black_24dp"/>
 
         <Preference
             android:title="App"
             android:summary="开发者:梦龙Dragon"
+            android:icon="@drawable/ic_person_black_24dp"
             />
 
     </PreferenceCategory>

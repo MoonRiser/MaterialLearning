@@ -282,8 +282,8 @@
 
     <array name="material_color">
         <item>@color/teal500</item>
-        <item>@color/red500</item>
         <item>@color/blue500</item>
+        <item>@color/red500</item>
         <item>@color/orange500</item>
         <item>@color/cyan500</item>
     </array>
