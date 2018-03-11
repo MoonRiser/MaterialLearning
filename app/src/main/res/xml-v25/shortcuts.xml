@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_group_black_24dp"
+        android:shortcutId="cortana"
+        android:shortcutLongLabel="@string/cortana_01"
+        android:shortcutShortLabel="@string/cortana_00">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.xiewencai.material_learning"
+            android:targetClass="com.example.xiewencai.material_learning.activity.WeTalkActivity"/>
+        <categories android:name="android.shortcut.conversation"/>
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_location_on_black_24dp"
+        android:shortcutId="location"
+        android:shortcutLongLabel="@string/location_01"
+        android:shortcutShortLabel="@string/location_00">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.xiewencai.material_learning"
+            android:targetClass="com.example.xiewencai.material_learning.activity.BaiduMapActivity"/>
+    </shortcut>
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/ic_event_note_black_24dp"
+        android:shortcutId="download"
+        android:shortcutLongLabel="@string/download_01"
+        android:shortcutShortLabel="@string/download_00">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.xiewencai.material_learning"
+            android:targetClass="com.example.xiewencai.material_learning.activity.DownloadTaskActivity"/>
+    </shortcut>
+
+
+
+</shortcuts>

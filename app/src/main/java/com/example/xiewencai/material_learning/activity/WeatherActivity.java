@@ -88,8 +88,10 @@ public class WeatherActivity extends BaseActivity {
 
 
         mWeatherId=getIntent().getStringExtra("weather_id");
+//        Log.i("ntent获取到的weatherid",mWeatherId);
         String weatherString = preferences.getString("weather",null);
         String savedWeatherId=preferences.getString("weather_id",null);
+     //   Log.i("SP存储的weatherid",savedWeatherId);
         if(mWeatherId==savedWeatherId){
             Weather weather= Utility.handleWeatherResponse(weatherString);
             mWeatherId=weather.basic.weatherId;
@@ -123,7 +125,7 @@ public class WeatherActivity extends BaseActivity {
     public void requestWeather(final String weatherId){
 
         String url="http://guolin.tech/api/weather?cityid="+weatherId+"&key=6e3f510f79334f7ea15bffc10168f420";
-        Log.i("天气url",url);
+    //    Log.i("天气url",url);
         HttpUtil.sendOkHttpRequest(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -197,9 +199,9 @@ public class WeatherActivity extends BaseActivity {
             pm25Text.setText(weather.aqi.city.pm25);
         }
 
-        String comfort="舒适度:"+weather.suggestion.comfort.info;
-        String carWash="洗车指数:"+weather.suggestion.carWash.info;
-        String sport="运动建议:"+weather.suggestion.sport.info;
+        String comfort="舒适度:   "+weather.suggestion.comfort.info;
+        String carWash="洗车指数:   "+weather.suggestion.carWash.info;
+        String sport="运动建议:   "+weather.suggestion.sport.info;
 
         comfortText.setText(comfort);
         carWashText.setText(carWash);
@@ -235,8 +237,9 @@ public class WeatherActivity extends BaseActivity {
     }
 
     public void setStatusTransparent(){
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN| View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN| View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
 
 
     }

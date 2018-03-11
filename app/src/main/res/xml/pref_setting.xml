@@ -11,6 +11,7 @@
             android:key="pref_user_name"
             android:title="修改昵称"
             android:icon="@drawable/ic_edit_black_24dp"/>
+
         <Preference
             android:key="pref_user_logout"
             android:title="退出登陆"
@@ -28,11 +29,20 @@
             android:summary="切换夜间模式"
             android:icon="@drawable/ic_brightness_4_black_24dp"/>
 
+        <ListPreference
+            android:key="weather_update_time"
+            android:summary="后台更新时间间隔"
+            android:title="天气服务"
+            android:icon="@drawable/ic_timer_black_24dp"
+            android:dialogTitle="选择更新周期"
+            android:defaultValue="null"
+            android:entries="@array/times_entities"
+            android:entryValues="@array/times_values" />
+
         <Preference
             android:title="App"
             android:summary="开发者:梦龙Dragon"
-            android:icon="@drawable/ic_person_black_24dp"
-            />
+            android:icon="@drawable/ic_person_black_24dp" />
 
     </PreferenceCategory>
 

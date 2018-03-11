@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:transitionName="note_detail"
+    tools:context="com.example.xiewencai.material_learning.activity.NoteDetailActivity">
+
+    <EditText
+        android:id="@+id/note_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@null"
+        android:maxLines="3"
+        android:textSize="24sp"
+        android:layout_margin="4dp"
+        android:hint="title"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:scrollHorizontally="false"/>
+
+    <TextView
+        android:id="@+id/note_detail_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="2018/03/03/14:19"
+        android:layout_marginEnd="8dp"
+        android:layout_gravity="end"/>
+
+    <EditText
+        android:id="@+id/note_detail_content"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="content"
+        android:maxLines="50"
+        android:textSize="16sp"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:scrollHorizontally="false"
+        />
+
+
+
+</LinearLayout>

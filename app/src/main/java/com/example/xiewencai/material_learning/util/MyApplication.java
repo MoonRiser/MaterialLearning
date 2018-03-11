@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatDelegate;
 
 import org.litepal.LitePal;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * Created by Xie Wencai on 2017/11/30.
  */

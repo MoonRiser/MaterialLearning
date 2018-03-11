@@ -1,5 +1,7 @@
 package com.example.xiewencai.material_learning.fragment;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -88,7 +90,8 @@ public class ChooseAreaFragment extends android.support.v4.app.Fragment {
                                                     String weatherId=countyList.get(position).getWeatherId();
                                                     Intent intent=new Intent(getActivity(), WeatherActivity.class);
                                                     intent.putExtra("weather_id",weatherId);
-                                                    startActivity(intent);
+                                                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(), listView.getChildAt(position), "title_county_name").toBundle());
+                                                //    startActivity(intent);
                                                  //   getActivity().finish();
                                                 }
                                             }

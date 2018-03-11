@@ -3,13 +3,11 @@ package com.example.xiewencai.material_learning.activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.service.DownloadService;
@@ -18,6 +16,7 @@ public class DownloadTaskActivity extends BaseActivity implements View.OnClickLi
 
     private DownloadService.DownloadBinder downloadBinder;
     EditText inputUr;
+
     private ServiceConnection connection=new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {//绑定服务和活动的时候回调该方法

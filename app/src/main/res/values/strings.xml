@@ -282,11 +282,21 @@
 
     <array name="material_color">
         <item>@color/teal500</item>
+        <item>@color/orange500</item>
         <item>@color/blue500</item>
         <item>@color/red500</item>
-        <item>@color/orange500</item>
         <item>@color/cyan500</item>
     </array>
 
+
+    <string name="cortana_00"> 伪小娜</string>
+    <string name="cortana_01"> WeTalk(伪小娜)</string>
+    <string name="location_00">当前位置</string>
+    <string name="location_01">定位当前位置</string>
+    <string name="download_00">下载任务</string>
+    <string name="download_01">下载任务(测试)</string>
+
+
+    <string name="Scale_Down_Show_Behavior"> com.example.xiewencai.material_learning.util.ScaleDownShowBehavior</string>
 
 </resources>

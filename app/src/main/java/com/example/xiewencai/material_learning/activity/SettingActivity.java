@@ -14,9 +14,10 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        android.support.v7.widget.Toolbar toolbar=(android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_setting);
+        android.support.v7.widget.Toolbar toolbar= findViewById(R.id.toolbar_setting);
        setSupportActionBar(toolbar);
         ActionBar actionBar=getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
 

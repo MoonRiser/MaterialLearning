@@ -3,14 +3,10 @@ package com.example.xiewencai.material_learning.activity;
 import android.Manifest;
 import android.animation.ArgbEvaluator;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,7 +20,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -39,7 +34,10 @@ import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.adapter.TabFragmentAdapter;
 import com.example.xiewencai.material_learning.fragment.ChooseAreaFragment;
 import com.example.xiewencai.material_learning.fragment.HorosFragment;
+import com.example.xiewencai.material_learning.fragment.NoteFragment;
 import com.example.xiewencai.material_learning.util.ActivityCollector;
+import com.example.xiewencai.material_learning.util.NotificationUtils;
+import com.zhouwei.mzbanner.MZBannerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +48,7 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
     private View statusView;
+    private MZBannerView mzBannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +123,8 @@ public class MainActivity extends BaseActivity {
 
     }
 //onCreate结束
+/*
+*/
 
     //为toolbar填充菜单布局
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -247,7 +248,9 @@ public class MainActivity extends BaseActivity {
         final List<String> tabList = new ArrayList<>();
         final int[] materalColor = getResources().getIntArray(R.array.material_color);
         tabList.add("星座故事");
+        tabList.add("笔记");
         tabList.add("天气");
+
         final TabLayout tabLayout = findViewById(R.id.tabs);
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -275,15 +278,19 @@ public class MainActivity extends BaseActivity {
         //  tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         List<Fragment> fragmentList = new ArrayList<>();
 
-            Fragment f1 = new HorosFragment();
-            Fragment f2 = new ChooseAreaFragment();
-            fragmentList.add(f1);
-            fragmentList.add(f2);
+        Fragment f1 = new HorosFragment();
+        Fragment f2 = new ChooseAreaFragment();
+        Fragment f3 = new NoteFragment();
+        fragmentList.add(f1);
+        fragmentList.add(f3);
+        fragmentList.add(f2);
+
 
         TabFragmentAdapter fragmentAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragmentList, tabList);
         viewPager.setAdapter(fragmentAdapter);//给ViewPager设置适配器
         tabLayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来。
         //tabLayout.setTabsFromPagerAdapter(fragmentAdapter);//给Tabs设置适配器
+
     }
 
     //初始化状态栏
@@ -314,16 +321,19 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
     private void sentMessage() {
         Intent intent = new Intent(this, SettingActivity.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        NotificationUtils notificationUtils = new NotificationUtils(this);
+        notificationUtils.sendNotification("Send developer an Email?", "I am the developer,Gmail accepted,you know it", R.mipmap.ic_launcher, pi, 1);
 
+        /*
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);//获取系统服务：通知管理器
-        Notification notification = new NotificationCompat.Builder(MainActivity.this).setContentTitle("Do you want to sent a email?").setStyle(new NotificationCompat.BigTextStyle().bigText("hi, would you want to make a communication with the developer? Gmail accepted,you know it"))
+        Notification notification = new NotificationCompat.Builder(MainActivity.this).setContentTitle("Do you want to send a email?").setStyle(new NotificationCompat.BigTextStyle().bigText("hi, would you want to make a communication with the developer? Gmail accepted,you know it"))
                 .setWhen(System.currentTimeMillis()).setAutoCancel(true).setContentIntent(pi).setDefaults(NotificationCompat.DEFAULT_ALL).setSmallIcon(R.mipmap.ic_launcher).
                         setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).build();
         notificationManager.notify(01, notification);
+        */
     }
 
 

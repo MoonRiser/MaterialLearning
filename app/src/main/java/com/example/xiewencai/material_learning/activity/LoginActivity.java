@@ -89,8 +89,8 @@ public  class LoginActivity extends  BaseActivity{
                    @Override
                   public void onClick(DialogInterface dialog, int which) {
 
-                       EditText user = (EditText)dialogSignIn.findViewById(R.id.username);
-                       EditText passwd = (EditText)dialogSignIn.findViewById(R.id.password);
+                       EditText user = dialogSignIn.findViewById(R.id.username);
+                       EditText passwd = dialogSignIn.findViewById(R.id.password);
                        final         String userStr = user.getText().toString();
                        final        String passwdStr = passwd.getText().toString();
                                         if(passwdStr.length()<8){

@@ -15,14 +15,49 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="预报"
-            android:textSize="20sp"
-            android:textColor="#fff"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="预报"
+                android:textSize="20sp"
+                android:textColor="#fff"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="94dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#fff"
+                android:text="天气"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#fff"
+                android:text="最高温"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#fff"
+                android:text="最低温"/>
+
+        </LinearLayout>
+
+
+
 
         <LinearLayout
             android:id="@+id/forecast_layout"
@@ -34,6 +69,7 @@
 
 
     </LinearLayout>
+
 
 </android.support.v7.widget.CardView>
 

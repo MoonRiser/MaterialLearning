@@ -17,6 +17,7 @@ import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.adapter.HoroAdapter;
 import com.example.xiewencai.material_learning.bean.Album;
 import com.example.xiewencai.material_learning.bean.Horoscope;
+import com.zhouwei.mzbanner.MZBannerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +30,13 @@ public class HorosFragment extends Fragment {
 
 
     private List<Horoscope> horoList = new ArrayList<>();
-    private List<Album> albumList=new ArrayList<>();
+    private List<Album> albumList = new ArrayList<>();
     private FloatingActionButton fab;
     private SwipeRefreshLayout swipeRefreshLayout;
     private View view;
-    HoroAdapter adapter ;
+    public HoroAdapter adapter;
+
+
     private Horoscope[] horos = {new Horoscope("Pisces", "双鱼座", R.drawable.pisces),
             new Horoscope("Cancro", "巨蟹座", R.drawable.cancro), new Horoscope("Scorpio", "天蝎座", R.drawable.scropio),
             new Horoscope("Aquarius", "水瓶座", R.drawable.aquarius), new Horoscope("Gemini", "双子座", R.drawable.gemini),
@@ -42,14 +45,13 @@ public class HorosFragment extends Fragment {
             new Horoscope("Taurus", "金牛座", R.drawable.taurus), new Horoscope("Capricorn", "摩羯座", R.drawable.capricorn),
             new Horoscope("Virgo", "处女座", R.drawable.virgo)};
 
-    private Album[] albums={ new Album(R.drawable.myvoice,"My Voice","2017","泰妍"),new Album(R.drawable.overdose,"Overdose","2014","EXO"),
-            new Album(R.drawable.redflavor,"Red Flavor","2017","Red Velvet"),new Album(R.drawable.redlight,"Red Light","2014","f(x)"),
-            new Album(R.drawable.peekaboo,"Perfect Velvet","2017","Red Velvet"),new Album(R.drawable.play,"Play","2017","Super Junior"),
-            new Album(R.drawable.whenthewindblows,"如果你也想我","2017","允儿"),new Album(R.drawable.catchme,"Catch Me","2012","东方神起"),
-            new Album(R.drawable.seven,"The Velvet","2016","Red Velvet"),new Album(R.drawable.lionheart,"Lion Heart","2015","少女时代"),
-            new Album(R.drawable.thered,"The Red","2015","Red Velvet"),new Album(R.drawable.party,"Party","2015","少女时代")
+    private Album[] albums = {new Album(R.drawable.myvoice, "My Voice", "2017", "泰妍"), new Album(R.drawable.overdose, "Overdose", "2014", "EXO"),
+            new Album(R.drawable.redflavor, "Red Flavor", "2017", "Red Velvet"), new Album(R.drawable.redlight, "Red Light", "2014", "f(x)"),
+            new Album(R.drawable.peekaboo, "Perfect Velvet", "2017", "Red Velvet"), new Album(R.drawable.play, "Play", "2017", "Super Junior"),
+            new Album(R.drawable.whenthewindblows, "如果你也想我", "2017", "允儿"), new Album(R.drawable.catchme, "Catch Me", "2012", "东方神起"),
+            new Album(R.drawable.seven, "The Velvet", "2016", "Red Velvet"), new Album(R.drawable.lionheart, "Lion Heart", "2015", "少女时代"),
+            new Album(R.drawable.thered, "The Red", "2015", "Red Velvet"), new Album(R.drawable.party, "Party", "2015", "少女时代")
     };
-
 
 
     @Override
@@ -69,7 +71,7 @@ public class HorosFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);//recyclerView
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        adapter=new HoroAdapter(horoList,albumList);
+        adapter = new HoroAdapter(horoList, albumList);
         recyclerView.setAdapter(adapter);
 
         fab = view.findViewById(R.id.floatingActionButton);//获取fab悬浮按钮
@@ -77,10 +79,16 @@ public class HorosFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Someone call the doctor", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
+                MZBannerView bannerView=adapter.bannerViewHolder.mzBannerView;
+                bannerView.setDuration(1000);
+                bannerView.setDelayedTime(3000);
+                bannerView.start();
+                Snackbar.make(v, "已开启banner轮播", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "This is what you came for", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "已撤销，轮播已关闭", Toast.LENGTH_SHORT).show();
+                        adapter.bannerViewHolder.mzBannerView.pause();
+                      //  Log.w("测试测试看看","banner开启轮播");
                     }
                 }).show();
             }
@@ -96,12 +104,11 @@ public class HorosFragment extends Fragment {
             }
         });
 
+
     }
 
 
     //初始化星座列表
-
-
     private void initHoros() {
 
         horoList.clear();
@@ -123,7 +130,7 @@ public class HorosFragment extends Fragment {
 
     private void initAlbums() {
 
-         albumList.clear();
+        albumList.clear();
         while (albumList.size() <= 11) {
             Random random = new Random();
             int index = random.nextInt(albums.length);//horos.length=12

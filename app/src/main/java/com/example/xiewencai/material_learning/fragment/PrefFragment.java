@@ -2,6 +2,7 @@ package com.example.xiewencai.material_learning.fragment;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -10,11 +11,14 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.activity.MainActivity;
+import com.example.xiewencai.material_learning.service.AutoUpdateService;
 import com.example.xiewencai.material_learning.util.ActivityCollector;
 
 import static com.example.xiewencai.material_learning.activity.MainActivity.BROADCAST_FLAG;
@@ -27,8 +31,10 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
     Context context;
     SharedPreferences sharedPreferences;
     Preference userInFo;
+    Preference editUser;
     Preference logout;
     Preference themeDark;
+    Preference weatherUpdate;
     String nickname;
    // int mode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 
@@ -38,13 +44,18 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
         userInFo=findPreference("pref_user_info");
         logout=findPreference("pref_user_logout");
         themeDark=findPreference("pref_theme_dark");
+        editUser=findPreference("pref_user_name");
+        weatherUpdate=findPreference("weather_update_time");
 
 
         context=getActivity();
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
+        editUser.setOnPreferenceChangeListener(this);
+        weatherUpdate.setOnPreferenceChangeListener(this);
         logout.setOnPreferenceClickListener(this);
         themeDark.setOnPreferenceChangeListener(this);
+
 
         String user=sharedPreferences.getString("account",null);
         nickname  =sharedPreferences.getString("pref_user_name",null);
@@ -65,7 +76,7 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
     public boolean onPreferenceChange(Preference preference, Object newValue) {
     switch (preference.getKey()){
         case "pref_user_name":
-            userInFo.setTitle("尊敬的"+"“"+nickname+"”");
+            userInFo.setTitle("尊敬的"+"“"+ newValue +"”");
             userInFo.setSummary("欢迎使用本应用");
             break;
 
@@ -77,9 +88,19 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
             }
             ActivityCollector.activities.get(0).recreate();//返回栈的首节点应该是主活动，让它重启
             getActivity().recreate();
-
             //Toast.makeText(getActivity(), "都说了功能还在开发中"+newValue, Toast.LENGTH_SHORT).show();
             break;
+
+        case "weather_update_time":
+                 int flag=  Integer.parseInt(String.valueOf(newValue));
+            if(flag!=0){
+                Toast.makeText(context, "天气更新服务已启动", Toast.LENGTH_SHORT).show();
+               // Log.i("测试Preference值改变回调",(String)newValue);
+                Intent intent=new Intent(getActivity(), AutoUpdateService.class);
+                getActivity().startService(intent);
+            }
+
+
     }
 
         return true;
@@ -90,8 +111,25 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
 
         switch (preference.getKey()){
             case "pref_user_logout":
-                Intent intent=new Intent(BROADCAST_FLAG);
-               context.sendBroadcast(intent);
+
+               final AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+               builder.setTitle("退出当前账号");
+               builder.setCancelable(false);
+               builder.setMessage("回到登陆界面，但是不清除本地账号密码数据");
+               builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       Intent intent=new Intent(BROADCAST_FLAG);
+                       context.sendBroadcast(intent);
+                   }
+               });
+               builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                   }
+               });
+                builder.show();
                 break;
         }
         return true;

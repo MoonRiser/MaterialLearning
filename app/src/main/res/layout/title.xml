@@ -22,6 +22,7 @@
         android:layout_toRightOf="@id/back_button"
         android:textColor="#fff"
         android:text="成都"
+        android:transitionName="title_county_name"
         android:textSize="20sp"/>
 
     <TextView
