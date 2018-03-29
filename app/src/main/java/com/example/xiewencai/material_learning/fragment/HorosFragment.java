@@ -31,19 +31,22 @@ public class HorosFragment extends Fragment {
 
     private List<Horoscope> horoList = new ArrayList<>();
     private List<Album> albumList = new ArrayList<>();
-    private FloatingActionButton fab;
     private SwipeRefreshLayout swipeRefreshLayout;
     private View view;
     public HoroAdapter adapter;
+    private CommonFab commonFab;
 
+    public void setCommonFab(CommonFab commonFab) {
+        this.commonFab = commonFab;
+    }
 
-    private Horoscope[] horos = {new Horoscope("Pisces", "双鱼座", R.drawable.pisces),
-            new Horoscope("Cancro", "巨蟹座", R.drawable.cancro), new Horoscope("Scorpio", "天蝎座", R.drawable.scropio),
-            new Horoscope("Aquarius", "水瓶座", R.drawable.aquarius), new Horoscope("Gemini", "双子座", R.drawable.gemini),
-            new Horoscope("Libra", "天秤座", R.drawable.libra), new Horoscope("Aries", "白羊座", R.drawable.aries),
-            new Horoscope("Sagit", "射手座", R.drawable.sagit), new Horoscope("Leo", "狮子座", R.drawable.leo),
-            new Horoscope("Taurus", "金牛座", R.drawable.taurus), new Horoscope("Capricorn", "摩羯座", R.drawable.capricorn),
-            new Horoscope("Virgo", "处女座", R.drawable.virgo)};
+    private Horoscope[] horos = {new Horoscope("Pisces", "双鱼座", R.drawable.pisces,"2.19-3.20",R.drawable.pisces1),
+            new Horoscope("Cancro", "巨蟹座", R.drawable.cancro,"6.22-7.22",R.drawable.cancer1), new Horoscope("Scorpio", "天蝎座", R.drawable.scropio,"10.24-11.22",R.drawable.scorpio1),
+            new Horoscope("Aquarius", "水瓶座", R.drawable.aquarius,"1.20-2.18",R.drawable.aquarius1), new Horoscope("Gemini", "双子座", R.drawable.gemini,"5.21-6.21",R.drawable.gemini1),
+            new Horoscope("Libra", "天秤座", R.drawable.libra,"9.23-10.23",R.drawable.libra1), new Horoscope("Aries", "白羊座", R.drawable.aries,"3.21-4.19",R.drawable.aries1),
+            new Horoscope("Sagit", "射手座", R.drawable.sagit,"11.23-12.11",R.drawable.sagittarius1), new Horoscope("Leo", "狮子座", R.drawable.leo,"7.23-8.22",R.drawable.leo1),
+            new Horoscope("Taurus", "金牛座", R.drawable.taurus,"4.20-5.20",R.drawable.taurus1), new Horoscope("Capricorn", "摩羯座", R.drawable.capricorn,"12.22-1.19",R.drawable.capricorn1),
+            new Horoscope("Virgo", "处女座", R.drawable.virgo,"8.23-9.22",R.drawable.virgo1)};
 
     private Album[] albums = {new Album(R.drawable.myvoice, "My Voice", "2017", "泰妍"), new Album(R.drawable.overdose, "Overdose", "2014", "EXO"),
             new Album(R.drawable.redflavor, "Red Flavor", "2017", "Red Velvet"), new Album(R.drawable.redlight, "Red Light", "2014", "f(x)"),
@@ -74,26 +77,24 @@ public class HorosFragment extends Fragment {
         adapter = new HoroAdapter(horoList, albumList);
         recyclerView.setAdapter(adapter);
 
-        fab = view.findViewById(R.id.floatingActionButton);//获取fab悬浮按钮
+     /*   FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
         //设置fab悬浮按钮的点击事件监听器
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MZBannerView bannerView=adapter.bannerViewHolder.mzBannerView;
-                bannerView.setDuration(1000);
-                bannerView.setDelayedTime(3000);
-                bannerView.start();
-                Snackbar.make(v, "已开启banner轮播", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
+
+                adapter.bannerViewHolder.mzBannerView.pause();
+                Snackbar.make(v, "已暂停banner轮播", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getActivity(), "已撤销，轮播已关闭", Toast.LENGTH_SHORT).show();
-                        adapter.bannerViewHolder.mzBannerView.pause();
+                        Toast.makeText(getActivity(), "已撤销，轮播已开启", Toast.LENGTH_SHORT).show();
+                       adapter.bannerViewHolder.mzBannerView.start();
                       //  Log.w("测试测试看看","banner开启轮播");
                     }
                 }).show();
             }
         });
-
+*/
         //设置滑动刷新的颜色和滑动刷新的监听器
         swipeRefreshLayout = view.findViewById(R.id.swipRe);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);
@@ -106,6 +107,35 @@ public class HorosFragment extends Fragment {
 
 
     }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            FloatingActionButton fab=commonFab.getCommonFab();
+            fab.setVisibility(View.VISIBLE);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adapter.bannerViewHolder.mzBannerView.pause();
+                    Snackbar.make(v, "已暂停banner轮播", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getActivity(), "已撤销，轮播已开启", Toast.LENGTH_SHORT).show();
+                            adapter.bannerViewHolder.mzBannerView.start();
+                            //  Log.w("测试测试看看","banner开启轮播");
+                        }
+                    }).show();
+                }
+            });
+            // 相当于onResume()方法
+        } else {
+            // 相当于onpause()方法
+        }
+    }
+
+
 
 
     //初始化星座列表
@@ -168,6 +198,11 @@ public class HorosFragment extends Fragment {
                 });
             }
         }).start();
+    }
+
+
+    public interface CommonFab{
+        FloatingActionButton getCommonFab();
     }
 
 

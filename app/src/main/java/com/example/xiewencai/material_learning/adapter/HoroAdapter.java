@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,8 @@ import com.zhouwei.mzbanner.holder.MZViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 /**
  * Created by Xie Wencai on 2017/8/22.
@@ -49,6 +52,9 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView cnName;
         TextView enName;
         ImageView horoImage;
+        CircleImageView circleImageView;
+        TextView horoDate;
+
         //RecyclerView horizon;
 
         //viewHolder的构造方法
@@ -58,6 +64,8 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             horoImage = view.findViewById(R.id.horo_image);
             cnName = view.findViewById(R.id.chinese_name);
             enName = view.findViewById(R.id.english_name);
+            horoDate=view.findViewById(R.id.horo_date);
+            circleImageView=view.findViewById(R.id.circleImg);
         }
 
     }
@@ -81,7 +89,7 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         BannerViewHolder(View view) {
             super(view);
             mzBannerView = (MZBannerView) view;
-            mzBannerView.start();//开始轮播
+          //  mzBannerView.start();//开始轮播
         }
     }
 
@@ -112,6 +120,7 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
+    @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mContext == null) {
             mContext = parent.getContext();
@@ -127,7 +136,8 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return bannerViewHolder;
         }
 
-        View view = LayoutInflater.from(mContext).inflate(R.layout.horoscope_item, parent, false);
+       // View view = LayoutInflater.from(mContext).inflate(R.layout.horoscope_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_horoscope_layout, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
                                                @Override
@@ -165,6 +175,8 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ViewHolder horoVH = (ViewHolder) holder;
             horoVH.enName.setText(horoscope.geteNname());
             horoVH.cnName.setText(horoscope.getcNname());
+            horoVH.horoDate.setText(horoscope.getDateHoros());
+            Glide.with(mContext).load(horoscope.getCircleImg()).into(horoVH.circleImageView);
             Glide.with(mContext).load(horoscope.getImageId()).into(horoVH.horoImage);
         } else if (holder instanceof AlbumViewHolder) {
             AlbumViewHolder AlbumVH = (AlbumViewHolder) holder;
@@ -188,6 +200,9 @@ public class HoroAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     return new BViewHolder();
                 }
             });
+            mzBannerView.setDuration(1000);
+            mzBannerView.setDelayedTime(3000);
+            mzBannerView.start();
         }
     }
 

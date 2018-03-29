@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity {
 
         //用于隐藏导航栏和状态栏的标识符
         View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(option);
 
 

@@ -29,9 +29,7 @@ import cn.bmob.v3.listener.SaveListener;
 public  class LoginActivity extends  BaseActivity{
 
     private EditText accountNum;
-    private EditText psw;
-    private Button login;
-    private Button signIn;
+    private EditText psw ;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     private CheckBox checkBox;
@@ -46,11 +44,11 @@ public  class LoginActivity extends  BaseActivity{
 
         //获取sharePreference对象
         pref= PreferenceManager.getDefaultSharedPreferences(this);
-        accountNum=(EditText) findViewById(R.id.accountEditText);
-        psw=(EditText) findViewById(R.id.pswEditText);
-        login=(Button)findViewById(R.id.Loginbutton);
-        signIn=(Button)findViewById(R.id.RegisterButton) ;
-        checkBox=(CheckBox)findViewById(R.id.checkBox2) ;
+        accountNum= findViewById(R.id.accountEditText);
+        Button login = findViewById(R.id.Loginbutton);
+        Button signIn = findViewById(R.id.RegisterButton);
+        checkBox= findViewById(R.id.checkBox2);
+         psw= findViewById(R.id.pswEditText);
 
         boolean isRember=pref.getBoolean("remember_password",false);
         //通过从sharedPreference对象写入的标记isRemenber来判断是否记住密码
@@ -115,12 +113,12 @@ public  class LoginActivity extends  BaseActivity{
         AlertDialog.Builder  dialog = new AlertDialog.Builder(LoginActivity.this);
         dialog.setTitle("说明");
         dialog.setCancelable(false);
-        dialog.setMessage("完成正常功能需要获取 读取电话状态权限，不会用于其他用途，请放心");
+        dialog.setMessage("完成正常功能需要获取 \n读取电话状态·读存储 权限\n不会用于其他用途，请放心 ( •̀ ω •́ )y");
         dialog.setPositiveButton("知道了", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.READ_PHONE_STATE},1);//申请权限
+                ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.READ_PHONE_STATE,Manifest.permission.WRITE_EXTERNAL_STORAGE},1);//申请权限
             }
         });
         dialog.show();
@@ -131,7 +129,7 @@ public  class LoginActivity extends  BaseActivity{
 
         switch (requestCode){
             case  1:
-                if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED&&grantResults[1]==PackageManager.PERMISSION_GRANTED)
                     loginBmob();
                 else
                     Toast.makeText(LoginActivity.this,"you denied the permission",Toast.LENGTH_LONG).show();

@@ -3,6 +3,7 @@ package com.example.xiewencai.material_learning.db;
 import java.util.Date;
 
 import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobUser;
 
 /**
  * Created by Xie Wencai on 2018/3/1.
@@ -10,10 +11,10 @@ import cn.bmob.v3.BmobObject;
 
 public class NoteRemote extends BmobObject {
 
-    private String identify;
+    private BmobUser author;
     private String title;
     private String content;
-    private Date date;
+    private String  date;
 
     public String getTitle() {
         return title;
@@ -31,21 +32,19 @@ public class NoteRemote extends BmobObject {
         this.content = content;
     }
 
-    public Date getDate() {
+    public String  getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String  date) {
         this.date = date;
     }
 
-    public String getIdentify() {
-        return identify;
+    public BmobUser getAuthor() {
+        return author;
     }
 
-    public void setIdentify(String identify) {
-        this.identify = identify;
+    public void setAuthor(BmobUser author) {
+        this.author = author;
     }
-
-
 }

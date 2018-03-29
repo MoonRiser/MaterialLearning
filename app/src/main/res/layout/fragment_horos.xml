@@ -17,6 +17,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -24,15 +26,5 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-      android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="40dp"
-        app:pressedTranslationZ="16dp"
-        app:srcCompat="@drawable/ic_check_black_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

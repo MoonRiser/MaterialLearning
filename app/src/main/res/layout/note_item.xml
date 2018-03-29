@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="4dp"
+    android:transitionName="note_detail"
     app:cardElevation="2dp"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
@@ -20,22 +21,22 @@
             android:id="@+id/note_item_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="4dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
             android:maxLines="3"
-            android:ellipsize="end"
-            android:textSize="20sp" />
+            android:ellipsize="end" />
 
         <TextView
             android:id="@+id/note_item_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="4dp"
             android:layout_margin="4dp"
-            android:maxLines="7"
-            android:ellipsize="end"
-            android:textSize="16sp"/>
+            android:maxLines="9"
+            android:ellipsize="end" />
 
 
 

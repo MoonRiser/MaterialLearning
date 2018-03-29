@@ -13,7 +13,7 @@ public class Note extends DataSupport{
     private int id;
     private String title;
     private String content;
-    private Date date;
+    private String  date;
     private  Boolean isUpload;
 
     public int getId() {
@@ -40,11 +40,11 @@ public class Note extends DataSupport{
         this.content = content;
     }
 
-    public Date getDate() {
+    public String  getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String  date) {
         this.date = date;
     }
 

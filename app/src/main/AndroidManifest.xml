@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- 允许联网 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
@@ -31,6 +32,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activity.SplashActivity"
             android:theme="@style/SplashTheme">
@@ -53,6 +55,7 @@
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
+
         <service
             android:name=".service.AutoUpdateService"
             android:enabled="true"
@@ -62,14 +65,17 @@
             android:name=".activity.MainActivity"
             android:label="Aesthetics"
             android:launchMode="singleTask" />
+
         <activity
             android:name=".activity.HorosActivity"
             android:theme="@style/HorosActivityTheme" />
         <activity android:name=".activity.WeTalkActivity" />
+
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/HorosActivityTheme" />
+
         <activity
             android:name=".activity.SettingActivity"
             android:label="设置" />
@@ -84,7 +90,9 @@
             android:name=".activity.DownloadTaskActivity"
             android:theme="@style/HideStatueBarTheme" />
         <activity android:name=".activity.WeatherActivity" />
-        <activity android:name=".activity.NoteDetailActivity"></activity>
+
+        <activity android:name=".activity.NoteDetailActivity" />
+
     </application>
 
 </manifest>

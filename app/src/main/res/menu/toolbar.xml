@@ -14,6 +14,14 @@
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="Settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/deleteAll"
+        android:title="deleteAllNote"
+        app:showAsAction="never"
+        />
+
+
     <item
         android:id="@+id/about"
         android:title="About"

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+<RelativeLayout
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImg"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/cancer1"/>
+    <TextView
+        android:id="@+id/chinese_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/circleImg"
+        android:layout_alignTop="@id/circleImg"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold"
+        android:text="巨蟹座"/>
+    <TextView
+        android:id="@+id/english_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_below="@id/chinese_name"
+        android:layout_alignStart="@id/chinese_name"
+        android:text="cancer"/>
+
+</RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/horo_image"
+            android:transitionName="horoImg"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/aquarius"/>
+
+
+        <TextView
+            android:id="@+id/horo_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:text="6.22-\n7.22"/>
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

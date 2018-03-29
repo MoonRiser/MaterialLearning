@@ -1,15 +1,14 @@
 package com.example.xiewencai.material_learning.activity;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.db.Note;
 import com.example.xiewencai.material_learning.util.NoteUtils;
-import com.example.xiewencai.material_learning.util.TimeParse;
 
 import java.util.List;
 
@@ -20,9 +19,8 @@ public class NoteDetailActivity extends BaseActivity {
     private EditText content;
     private TextView date;
     private boolean isBlank;
-    private  int position;
+    private boolean isEditStateChanged;
 
-    //@SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +29,19 @@ public class NoteDetailActivity extends BaseActivity {
         content=findViewById(R.id.note_detail_content);
         date=findViewById(R.id.note_detail_date);
 
-        position= getIntent().getIntExtra("position",-1);
-        isBlank=(position==-1);
+
+        //监听EditText的状态，如果呗编辑，则标志位置1
+        setEditChangeListener(title);
+        setEditChangeListener(content);
+
+        int position = getIntent().getIntExtra("position", -1);
+        isBlank=(position ==-1);
         if(!isBlank){
             List<Note> noteList= NoteUtils.getNoteDataFromDB();
             note=noteList.get(position);
             title.setText(note.getTitle());
             content.setText(note.getContent());
-            date.setText("创建时间:"+TimeParse.getTimeByDate(note.getDate()));
+            date.setText(new StringBuilder().append("创建时间:").append(note.getDate()));
         }else {
             note=new Note();
         }
@@ -54,17 +57,42 @@ public class NoteDetailActivity extends BaseActivity {
                 return;
             }
             note.setUpload(false);
-            note.setDate(TimeParse.getCurrentDate());
+            note.setDate(NoteUtils.getCurrentDate());
             note.setTitle(title.getText().toString());
             note.setContent(content.getText().toString());
             note.save();
-        }else{
+        }else if(isEditStateChanged){
+
           //  note.setDate(TimeParse.getCurrentDate());
             note.setTitle(title.getText().toString());
             note.setContent(content.getText().toString());
             note.update(note.getId());
+            NoteUtils.queryNoteByDate(note,this);
         }
     }
 
+
+    private void setEditChangeListener(EditText editText){
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(start!=0)
+               isEditStateChanged=true;
+              // Log.w("EditText监听，是否输入内容或状态改变",s+"///"+start+"///"+before+"当前回调已执行"+count);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+             //   Log.w("监听EditText","改变后的字符串S："+s);
+            }
+        });
+    }
 
 }

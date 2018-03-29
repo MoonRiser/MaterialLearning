@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.activity.MainActivity;
+import com.example.xiewencai.material_learning.db.Note;
 import com.example.xiewencai.material_learning.service.AutoUpdateService;
 import com.example.xiewencai.material_learning.util.ActivityCollector;
+
+import org.litepal.crud.DataSupport;
 
 import static com.example.xiewencai.material_learning.activity.MainActivity.BROADCAST_FLAG;
 
@@ -120,6 +123,7 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
                    @Override
                    public void onClick(DialogInterface dialog, int which) {
                        Intent intent=new Intent(BROADCAST_FLAG);
+                       DataSupport.deleteAll(Note.class);
                        context.sendBroadcast(intent);
                    }
                });

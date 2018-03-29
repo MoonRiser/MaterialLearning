@@ -9,6 +9,33 @@ public class Horoscope {
     private String eNname;
     private String cNname;
     private int imageId;
+    private  String dateHoros;
+    private int circleImg;
+
+    public Horoscope(String eNname, String cNname, int imageId, String dateHoros, int circleImg) {
+        this.eNname = eNname;
+        this.cNname = cNname;
+        this.imageId = imageId;
+        this.dateHoros = dateHoros;
+        this.circleImg = circleImg;
+    }
+
+    public String getDateHoros() {
+
+        return dateHoros;
+    }
+
+    public void setDateHoros(String dateHoros) {
+        this.dateHoros = dateHoros;
+    }
+
+    public int getCircleImg() {
+        return circleImg;
+    }
+
+    public void setCircleImg(int circleImg) {
+        this.circleImg = circleImg;
+    }
 
     //构造方法
     public  Horoscope(String eNname,String cNname,int  imageId){

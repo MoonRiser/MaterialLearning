@@ -4,35 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/viewBackground"
-    android:clipToPadding="false"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:clipToPadding="false">
 
 
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipRe_note"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
+
             android:id="@+id/recycler_view_note"
             android:padding="4dp"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="32dp"
-        app:pressedTranslationZ="16dp"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+
 
 </android.support.design.widget.CoordinatorLayout>

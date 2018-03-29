@@ -13,7 +13,7 @@
     android:src="@drawable/nav_cat"
     android:id="@+id/circleImageView"
     android:layout_centerVertical="true"
-    android:layout_marginLeft="20dp"
+    android:layout_marginStart="20dp"
  />
 
     <TextView
@@ -22,9 +22,10 @@
         android:layout_height="wrap_content"
         android:text="@string/mail"
         android:textColor="#ffffff"
-        android:layout_toRightOf="@id/circleImageView"
+        android:layout_toEndOf="@id/circleImageView"
         android:layout_alignBottom="@id/circleImageView"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
          />
 
 
@@ -35,7 +36,7 @@
         android:text="By:梦龙Dragon"
         android:textColor="#ffffff"
         android:layout_above="@id/textView_email"
-        android:layout_alignRight="@id/textView_email"
+        android:layout_alignEnd="@id/textView_email"
         />
 
 

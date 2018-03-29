@@ -59,6 +59,11 @@ public class ChooseAreaFragment extends android.support.v4.app.Fragment {
     private City selectedCity;
     private int currentLevel;
 
+    private HorosFragment.CommonFab commonFab;
+
+    public void setCommonFab(HorosFragment.CommonFab commonFab) {
+        this.commonFab = commonFab;
+    }
 
     @Nullable
     @Override
@@ -109,6 +114,19 @@ public class ChooseAreaFragment extends android.support.v4.app.Fragment {
                                       }
         );
         queryProvinces();
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            commonFab.getCommonFab().setVisibility(View.GONE);
+            // 相当于onResume()方法
+        } else {
+            // 相当于onpause()方法
+        }
+
     }
 
 
@@ -221,7 +239,6 @@ public class ChooseAreaFragment extends android.support.v4.app.Fragment {
             }
         });
     }
-
 
     private void showProcessDialog() {
         if (progressDialog == null) {

@@ -10,10 +10,12 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -32,23 +34,29 @@ import android.widget.Toast;
 
 import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.adapter.TabFragmentAdapter;
+import com.example.xiewencai.material_learning.db.Note;
 import com.example.xiewencai.material_learning.fragment.ChooseAreaFragment;
 import com.example.xiewencai.material_learning.fragment.HorosFragment;
 import com.example.xiewencai.material_learning.fragment.NoteFragment;
 import com.example.xiewencai.material_learning.util.ActivityCollector;
+import com.example.xiewencai.material_learning.util.NoteUtils;
 import com.example.xiewencai.material_learning.util.NotificationUtils;
 import com.zhouwei.mzbanner.MZBannerView;
+
+import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements HorosFragment.CommonFab {
 
     public static final String BROADCAST_FLAG = "com.example.xiewencai.material_learning.FORCE_OFFLINE";
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
     private View statusView;
     private MZBannerView mzBannerView;
+    private NoteFragment f3;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +64,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         statusView = initStatusBar();
-
+        fab=findViewById(R.id.common_fab);
         NavigationView navView = findViewById(R.id.nav_view);
         mDrawerLayout = findViewById(R.id.drawer_layout);//导航抽屉
 
@@ -138,7 +146,8 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()) {
 
             case R.id.backup:
-                Toast.makeText(this, "well, you clicked Backup", Toast.LENGTH_SHORT).show();
+                NoteUtils.uploadNoteData(this);
+              //  Toast.makeText(this, "well, you clicked Backup", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.about:
                 showToast("Software Copyright Reserved ");
@@ -150,6 +159,9 @@ public class MainActivity extends BaseActivity {
             case R.id.settings: //写个新的activity关于
                 Intent intent1 = new Intent(this, SettingActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.deleteAll:
+                deleteAllNote();
                 break;
 
             default:
@@ -280,11 +292,13 @@ public class MainActivity extends BaseActivity {
 
         Fragment f1 = new HorosFragment();
         Fragment f2 = new ChooseAreaFragment();
-        Fragment f3 = new NoteFragment();
+         f3 = new NoteFragment();
         fragmentList.add(f1);
         fragmentList.add(f3);
         fragmentList.add(f2);
-
+        ((HorosFragment)f1).setCommonFab(this);
+        ((ChooseAreaFragment)f2).setCommonFab(this);
+        f3.setCommonFab(this);
 
         TabFragmentAdapter fragmentAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragmentList, tabList);
         viewPager.setAdapter(fragmentAdapter);//给ViewPager设置适配器
@@ -336,7 +350,35 @@ public class MainActivity extends BaseActivity {
         */
     }
 
+    private void deleteAllNote(){
 
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("删除确认");
+        builder.setCancelable(false);
+        builder.setMessage("将删除所有笔记数据，清除数据库\n数据有可能完全丢失\n确定进行吗？");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DataSupport.deleteAll(Note.class);
+                f3.deleteAllLocal();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public FloatingActionButton getCommonFab() {
+        if(fab!=null){
+            return fab;
+        }
+        return null;
+    }
 }
 
 

@@ -9,11 +9,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
-        
+        <!--
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/slide</item>
         <item name="android:windowExitTransition">@transition/explode</item>
-
+-->
 
     </style>
 
@@ -30,4 +30,7 @@
     <style name="HideStatueBarTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
     </style>
+
+
+
 </resources>

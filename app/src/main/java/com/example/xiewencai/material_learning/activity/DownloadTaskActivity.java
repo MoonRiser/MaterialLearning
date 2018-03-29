@@ -63,7 +63,9 @@ public class DownloadTaskActivity extends BaseActivity implements View.OnClickLi
                 downloadBinder.pauseDownload();break;
             case R.id.bt_cancel:
                 inputUr.setText("");
-                downloadBinder.cancelDownload();break;
+                downloadBinder.cancelDownload();
+                finish();
+                break;
                 default:
                     break;
 
