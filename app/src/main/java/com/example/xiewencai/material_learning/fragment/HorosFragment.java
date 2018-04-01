@@ -2,12 +2,14 @@ package com.example.xiewencai.material_learning.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.adapter.HoroAdapter;
 import com.example.xiewencai.material_learning.bean.Album;
 import com.example.xiewencai.material_learning.bean.Horoscope;
+import com.example.xiewencai.material_learning.util.CommonFab;
 import com.zhouwei.mzbanner.MZBannerView;
 
 import java.util.ArrayList;
@@ -77,24 +80,6 @@ public class HorosFragment extends Fragment {
         adapter = new HoroAdapter(horoList, albumList);
         recyclerView.setAdapter(adapter);
 
-     /*   FloatingActionButton fab = view.findViewById(R.id.floatingActionButton);
-        //设置fab悬浮按钮的点击事件监听器
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                adapter.bannerViewHolder.mzBannerView.pause();
-                Snackbar.make(v, "已暂停banner轮播", Snackbar.LENGTH_SHORT).setAction("undo", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getActivity(), "已撤销，轮播已开启", Toast.LENGTH_SHORT).show();
-                       adapter.bannerViewHolder.mzBannerView.start();
-                      //  Log.w("测试测试看看","banner开启轮播");
-                    }
-                }).show();
-            }
-        });
-*/
         //设置滑动刷新的颜色和滑动刷新的监听器
         swipeRefreshLayout = view.findViewById(R.id.swipRe);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark);
@@ -109,10 +94,12 @@ public class HorosFragment extends Fragment {
     }
 
 
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
+            Log.w("horoFragment里面先执行","TEST"+(commonFab==null));
             FloatingActionButton fab=commonFab.getCommonFab();
             fab.setVisibility(View.VISIBLE);
             fab.setOnClickListener(new View.OnClickListener() {
@@ -201,9 +188,7 @@ public class HorosFragment extends Fragment {
     }
 
 
-    public interface CommonFab{
-        FloatingActionButton getCommonFab();
-    }
+
 
 
 }

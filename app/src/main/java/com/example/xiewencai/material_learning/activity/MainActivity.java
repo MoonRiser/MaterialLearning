@@ -16,6 +16,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -23,6 +24,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +41,7 @@ import com.example.xiewencai.material_learning.fragment.ChooseAreaFragment;
 import com.example.xiewencai.material_learning.fragment.HorosFragment;
 import com.example.xiewencai.material_learning.fragment.NoteFragment;
 import com.example.xiewencai.material_learning.util.ActivityCollector;
+import com.example.xiewencai.material_learning.util.CommonFab;
 import com.example.xiewencai.material_learning.util.NoteUtils;
 import com.example.xiewencai.material_learning.util.NotificationUtils;
 import com.zhouwei.mzbanner.MZBannerView;
@@ -48,7 +51,7 @@ import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements HorosFragment.CommonFab {
+public class MainActivity extends BaseActivity implements CommonFab {
 
     public static final String BROADCAST_FLAG = "com.example.xiewencai.material_learning.FORCE_OFFLINE";
     private DrawerLayout mDrawerLayout;
@@ -133,6 +136,9 @@ public class MainActivity extends BaseActivity implements HorosFragment.CommonFa
 //onCreate结束
 /*
 */
+
+
+
 
     //为toolbar填充菜单布局
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -289,18 +295,25 @@ public class MainActivity extends BaseActivity implements HorosFragment.CommonFa
         //设置tab模式，MODE_FIXED是固定的，MODE_SCROLLABLE可超出屏幕范围滚动的
         //  tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         List<Fragment> fragmentList = new ArrayList<>();
+        FragmentManager fragmentManager=getSupportFragmentManager();
+     //
+   //     if(fragmentManager.getFragments().isEmpty()){
+            Fragment f1 = new HorosFragment();
+            Fragment f2 = new ChooseAreaFragment();
+            f3 = new NoteFragment();
+            ((HorosFragment)f1).setCommonFab(this);
+            Log.w("MainActivity这边先执行","test"+(this.getCommonFab()==null));
+            ((ChooseAreaFragment)f2).setCommonFab(this);
+            f3.setCommonFab(this);
+            fragmentList.add(f1);
+            fragmentList.add(f3);
+            fragmentList.add(f2);
+   //     }else {
+         //   fragmentList=fragmentManager.getFragments();
+  //      }
 
-        Fragment f1 = new HorosFragment();
-        Fragment f2 = new ChooseAreaFragment();
-         f3 = new NoteFragment();
-        fragmentList.add(f1);
-        fragmentList.add(f3);
-        fragmentList.add(f2);
-        ((HorosFragment)f1).setCommonFab(this);
-        ((ChooseAreaFragment)f2).setCommonFab(this);
-        f3.setCommonFab(this);
 
-        TabFragmentAdapter fragmentAdapter = new TabFragmentAdapter(getSupportFragmentManager(), fragmentList, tabList);
+        TabFragmentAdapter fragmentAdapter = new TabFragmentAdapter(fragmentManager, fragmentList, tabList);
         viewPager.setAdapter(fragmentAdapter);//给ViewPager设置适配器
         tabLayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来。
         //tabLayout.setTabsFromPagerAdapter(fragmentAdapter);//给Tabs设置适配器

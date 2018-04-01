@@ -22,6 +22,7 @@ import com.example.xiewencai.material_learning.activity.WeatherActivity;
 import com.example.xiewencai.material_learning.db.City;
 import com.example.xiewencai.material_learning.db.County;
 import com.example.xiewencai.material_learning.db.Province;
+import com.example.xiewencai.material_learning.util.CommonFab;
 import com.example.xiewencai.material_learning.util.HttpUtil;
 import com.example.xiewencai.material_learning.util.Utility;
 
@@ -59,9 +60,9 @@ public class ChooseAreaFragment extends android.support.v4.app.Fragment {
     private City selectedCity;
     private int currentLevel;
 
-    private HorosFragment.CommonFab commonFab;
+    private CommonFab commonFab;
 
-    public void setCommonFab(HorosFragment.CommonFab commonFab) {
+    public void setCommonFab(CommonFab commonFab) {
         this.commonFab = commonFab;
     }
 
@@ -128,6 +129,8 @@ public class ChooseAreaFragment extends android.support.v4.app.Fragment {
         }
 
     }
+
+
 
 
     private void queryProvinces() {

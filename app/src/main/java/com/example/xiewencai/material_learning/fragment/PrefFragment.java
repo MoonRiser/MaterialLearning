@@ -1,6 +1,7 @@
 package com.example.xiewencai.material_learning.fragment;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -89,7 +90,10 @@ public class PrefFragment extends PreferenceFragment  implements Preference.OnPr
             } else  {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
-            ActivityCollector.activities.get(0).recreate();//返回栈的首节点应该是主活动，让它重启
+            Activity activity= ActivityCollector.activities.get(0);//返回栈的首节点应该是主活动，让它重启
+            if(activity instanceof MainActivity){
+                activity.finish();
+            }
             getActivity().recreate();
             //Toast.makeText(getActivity(), "都说了功能还在开发中"+newValue, Toast.LENGTH_SHORT).show();
             break;

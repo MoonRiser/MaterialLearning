@@ -24,6 +24,7 @@ import com.example.xiewencai.material_learning.R;
 import com.example.xiewencai.material_learning.activity.NoteDetailActivity;
 import com.example.xiewencai.material_learning.adapter.NoteAdapter;
 import com.example.xiewencai.material_learning.db.Note;
+import com.example.xiewencai.material_learning.util.CommonFab;
 import com.example.xiewencai.material_learning.util.NoteUtils;
 
 import org.litepal.crud.DataSupport;
@@ -40,9 +41,9 @@ public class NoteFragment extends Fragment {
     private List<Note> noteList=new LinkedList<>();
     private NoteAdapter noteAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private HorosFragment.CommonFab commonFab;
+    private CommonFab commonFab;
 
-    public void setCommonFab(HorosFragment.CommonFab commonFab) {
+    public void setCommonFab(CommonFab commonFab) {
         this.commonFab = commonFab;
     }
 
@@ -52,6 +53,7 @@ public class NoteFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_note, container, false);
         return view;
     }
+
 
 
     @Override

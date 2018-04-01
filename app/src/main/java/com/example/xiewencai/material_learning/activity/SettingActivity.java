@@ -1,5 +1,6 @@
 package com.example.xiewencai.material_learning.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -30,6 +31,8 @@ public class SettingActivity extends BaseActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -37,5 +40,10 @@ public class SettingActivity extends BaseActivity {
         return true;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
 }
