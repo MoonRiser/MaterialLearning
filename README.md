@@ -3,29 +3,29 @@ A Material Android demo
 Which include many feature of MD  
 
 
- Ò¹¼äÄ£Ê½  
-![Ò¹¼äÄ£Ê½](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/nightMode.gif)  
++ å¤œé—´æ¨¡å¼  
+![å¤œé—´æ¨¡å¼](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/nightMode.gif)  
 
- ±Ê¼ÇFragment
-![±Ê¼Ç](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/note.gif)  
++ ç¬”è®°Fragment
+![ç¬”è®°](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/note.gif)  
 
- ±Ê¼ÇÉ¾³ı  
-![±Ê¼ÇÉ¾³ı](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/noteDelete.gif)  
++ ç¬”è®°åˆ é™¤  
+![ç¬”è®°åˆ é™¤](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/noteDelete.gif)  
 
- shortCuts  
++ shortCuts  
 ![shrotcuts](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/shortcuts.gif)  
 
- Æô¶¯¶¯»­¼°sharedElement¹ı¶É  
-![¹ı³¡¶¯»­](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/transition.gif)  
++ å¯åŠ¨åŠ¨ç”»åŠsharedElementè¿‡æ¸¡  
+![è¿‡åœºåŠ¨ç”»](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/transition.gif)  
 
- ÌìÆøFragment  
-![ÌìÆøËéÆ¬](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/weather.gif)  
++ å¤©æ°”Fragment  
+![å¤©æ°”ç¢ç‰‡](https://github.com/MoonRiser/MaterialLearning/blob/master/gif/weather.gif)  
 
 </br>
 </br>
 </br>
 </br>
 
-²Î¿¼/ÃùĞ» ¡¶µÚÒ»ĞĞ´úÂë(µÚ¶ş°æ)¡·/¹ùÁØ , Keep(Google±Ê¼ÇÓ¦ÓÃ£¬UI²Î¿¼)¼°ÆäËû²©¿ÍÎÄÕÂ
+å‚è€ƒ/é¸£è°¢ ã€Šç¬¬ä¸€è¡Œä»£ç (ç¬¬äºŒç‰ˆ)ã€‹/éƒ­éœ– , Keep(Googleç¬”è®°åº”ç”¨ï¼ŒUIå‚è€ƒ)åŠå…¶ä»–åšå®¢æ–‡ç« 
 
 
